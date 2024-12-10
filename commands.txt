@@ -1,0 +1,21 @@
+python -m venv mlflow_B2
+
+## For windows(gitbash):
+ => source mlflow_B2/Scripts/activate
+
+## Linux => source /mlflow_B2/bin/activate
+
+## Install dependencies
+pip install -r requirements.txt 
+
+## To run data cleaning
+ python src/Data_Cleaning.py --raw_data_path "./artifacts/data/raw_data/homeprices.csv" --clean_data_path  "./artifacts/data/cleaned_data/cleaned_data.csv"
+
+## To run data preprocessing
+python src/Data_Preprocessing.py --test_size 0.20 --Target price
+
+##  To run data model building
+python src/Model_Building.py 
+
+##  To run data model evaluation
+python src/Model_Evaluation.py 
