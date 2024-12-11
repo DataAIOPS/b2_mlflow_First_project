@@ -4,15 +4,17 @@ from sklearn.linear_model import LinearRegression
 import pickle
 import argparse
 import time
+import mlflow
 
 ts = int(time.time())
 
-processed_data_path = "./artifacts/data/processed_data/"
-model_path = "./artifacts/models/raw_model/"
+processed_data_path = "./../artifacts/data/processed_data/"
+model_path = "./../artifacts/models/raw_model/"
 
 def model_building(processed_data_path,ts,model_path):
     X_train = pd.read_csv(os.path.join(processed_data_path,"X_train.csv"))
     y_train = pd.read_csv(os.path.join(processed_data_path,"y_train.csv"))
+    shape = X_train.shape
 
     print("############ [INFO] Model building is started ############ ")
 
@@ -20,6 +22,9 @@ def model_building(processed_data_path,ts,model_path):
     model.fit(X_train,y_train)
 
     pickle.dump(model,open(os.path.join(model_path,f"{ts}_model.pkl"),"wb"))
+    mlflow.log_param("train_shape",shape)
+    mlflow.sklearn.log_model(model, "Regression_Model")
+
 
     print("############ [INFO] Model Training Is Finished ############ ") 
 

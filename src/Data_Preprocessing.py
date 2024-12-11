@@ -2,11 +2,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import os
 import argparse
+import mlflow
 
 test_size = 0.20
 Target = "price"
-clean_data_path = "./artifacts/data/cleaned_data/cleaned_data.csv"
-processed_data_path = "./artifacts/data/processed_data/"
+clean_data_path = "./../artifacts/data/cleaned_data/cleaned_data.csv"
+processed_data_path = "./../artifacts/data/processed_data/"
 
 
 def processed_data(clean_data_path,Target,test_size,processed_data_path):
@@ -22,7 +23,8 @@ def processed_data(clean_data_path,Target,test_size,processed_data_path):
     """
     You can write some proprocessing steps here
     """
-
+    mlflow.log_param("test_size",test_size)
+    mlflow.log_param("Target",Target)
     X_train.to_csv(os.path.join(processed_data_path,"X_train.csv"),index=False)
     X_test.to_csv(os.path.join(processed_data_path,"X_test.csv"),index=False)
     y_train.to_csv(os.path.join(processed_data_path,"y_train.csv"),index=False)

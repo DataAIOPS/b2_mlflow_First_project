@@ -3,9 +3,10 @@ import os
 import pickle
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score 
 import argparse
+import mlflow
 
-processed_data_path = "./artifacts/data/processed_data/"
-model_path = "./artifacts/models/raw_model/"
+processed_data_path = "./../artifacts/data/processed_data/"
+model_path = "./../artifacts/models/raw_model/"
 
 
 def find_latest_model(model_path):
@@ -14,6 +15,7 @@ def find_latest_model(model_path):
     return files[temp.index(max(temp))]
 
 def model_evalaution(processed_data_path,model_path):
+    print("############## Model Evaluation Started ##############")
     X_test = pd.read_csv(os.path.join(processed_data_path,"X_test.csv"))
     y_test = pd.read_csv(os.path.join(processed_data_path,"y_test.csv"))
 
@@ -25,6 +27,10 @@ def model_evalaution(processed_data_path,model_path):
     r_score = r2_score(y_test,y_pred)
     MAE = mean_absolute_error(y_test,y_pred)
     MSE = mean_squared_error(y_test,y_pred)
+
+    mlflow.log_metric("r_score",r_score)
+    mlflow.log_metric("MAE",MAE)
+    mlflow.log_metric("MSE",MSE)
     print(f"r_score = {r_score} MAE = {MAE} MSE = {MSE}")
 
 
