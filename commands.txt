@@ -9,7 +9,7 @@ python -m venv mlflow_B2
 pip install -r requirements.txt 
 
 ## To run data cleaning
- python src/Data_Cleaning.py --raw_data_path "./artifacts/data/raw_data/homeprices.csv" --clean_data_path  "./artifacts/data/cleaned_data/cleaned_data.csv"
+python src/Data_Cleaning.py --raw_data_path "./artifacts/data/raw_data/homeprices.csv" --clean_data_path  "./artifacts/data/cleaned_data/cleaned_data.csv"
 
 ## To run data preprocessing
 python src/Data_Preprocessing.py --test_size 0.20 --Target price
@@ -19,3 +19,10 @@ python src/Model_Building.py
 
 ##  To run data model evaluation
 python src/Model_Evaluation.py 
+
+os.environ['MLFLOW_TRACKING_URI'] = 'MLFLOW_TRACKING_URI'
+os.environ['MLFLOW_TRACKING_USERNAME'] = 'YOUR MLFLOW_TRACKING_USERNAME'
+os.environ['MLFLOW_TRACKING_PASSWORD'] = 'YOUR MLFLOW_TRACKING_PASSWORD'
+
+
+To tun
