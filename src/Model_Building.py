@@ -16,7 +16,7 @@ def model_building(processed_data_path,ts,model_path):
     y_train = pd.read_csv(os.path.join(processed_data_path,"y_train.csv"))
     shape = X_train.shape
 
-    print("############ [INFO] Model building is started ############ ")
+    print(f"############ [INFO] Model building is started ############ {shape} ")
 
     model = LinearRegression()
     model.fit(X_train,y_train)

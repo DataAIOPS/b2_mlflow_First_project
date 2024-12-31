@@ -17,6 +17,7 @@ def find_latest_model(model_path):
 def model_evalaution(processed_data_path,model_path):
     print("############## Model Evaluation Started ##############")
     X_test = pd.read_csv(os.path.join(processed_data_path,"X_test.csv"))
+    X_test = X_test["area"]
     y_test = pd.read_csv(os.path.join(processed_data_path,"y_test.csv"))
 
     raw_model = find_latest_model(model_path)

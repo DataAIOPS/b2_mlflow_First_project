@@ -25,4 +25,5 @@ os.environ['MLFLOW_TRACKING_USERNAME'] = 'YOUR MLFLOW_TRACKING_USERNAME'
 os.environ['MLFLOW_TRACKING_PASSWORD'] = 'YOUR MLFLOW_TRACKING_PASSWORD'
 
 
-To tun
+##To export all requirements of environment to requirements.txt
+pip freeze > requirements.txt

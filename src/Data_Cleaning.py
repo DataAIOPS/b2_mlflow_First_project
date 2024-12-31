@@ -16,7 +16,7 @@ def data_cleaning(raw_data_path,clean_data_path):
     """
     mlflow.log_param("After_Clean_Shape",shape)
 
-    df.to_csv(clean_data_path)
+    df.to_csv(clean_data_path,index=False)
 
 
 if __name__ == '__main__':
